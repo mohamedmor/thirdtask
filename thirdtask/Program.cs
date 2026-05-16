@@ -37,9 +37,10 @@ namespace thirdtask
         }
         public string SearchBook(string author)
         {
+            string title = "";
             for (int i = 0; i < books.Count; i++)
             {
-                if (books[i].author == author)
+                if (books[i].author == author || books[i].title == title)
                     return "is available";         
             }
             return "is not available";
@@ -69,21 +70,16 @@ namespace thirdtask
     {
         static void Main(string[] args)
         {
-            Book book1 = new Book( "al-ayam",  "taha husine", "1234567890");
-            Book book2 = new Book(" alfetna-alkobra", "taha husine", "1234567891");
-            Book book3 = new Book("alwaad-alhaq", "taha husine", "1234567892");
-            Book book4 = new Book(" awdate-alrooh", "tawfeeq al-hakeem", "1234567893");
-            Book book5 = new Book("shahrazade", "tawfeeq al-hakeem", "1234567894");
             Library library = new Library();
-            library.AddBook(book1);
-            library.AddBook(book2);
-            library.AddBook(book3);
-            library.AddBook(book4);
-            library.AddBook(book5);
+            library.AddBook(new("al-ayam", "taha husine", "1234567890"));
+            library.AddBook(new(" alfetna-alkobra", "taha husine", "1234567891"));
+            library.AddBook(new("alwaad-alhaq", "taha husine", "1234567892"));
+            library.AddBook(new(" awdate-alrooh", "tawfeeq al-hakeem", "1234567893"));
+            library.AddBook(new("shahrazade", "tawfeeq al-hakeem", "1234567894"));
+            
+            Console.WriteLine( library.DisplayBooks());
             Console.WriteLine(library.SearchBook("taha husine"));
-            Console.WriteLine( library.DisplayBooks());
             library.BorrowBook("al-ayam");
-            Console.WriteLine( library.DisplayBooks());
             Console.WriteLine( library.SearchBook("al-ayam"));
             library.AddBook(new("al-tareeq ela allah","ameer moneer","1234567895"));
             Console.WriteLine( library.ReturnBook("al-ayam"));
